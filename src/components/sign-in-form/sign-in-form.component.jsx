@@ -5,6 +5,7 @@ import Button from '../button/button.component'
 
 
 
+
 import './sign-in-form.styles.scss'
 
 const defaultFormFields={
@@ -20,8 +21,7 @@ const SignInForm =()=>{
     }
     const signInWithGoogle=async()=>
     {
-        const {user}=await signInWithGooglePopup()
-        await createUserDocumentFromAuth(user)
+        await signInWithGooglePopup()
 
     }
 
@@ -34,7 +34,9 @@ const SignInForm =()=>{
 
         try{
             
-            const response =await signInAuthUserWithEmailAndPassword(email,password)    
+            const {user} =await signInAuthUserWithEmailAndPassword(email,password)    
+            console.log('useer=',user);
+            // setCurrentUser(user)
             resetFormFields()
 
         }   catch(error){
